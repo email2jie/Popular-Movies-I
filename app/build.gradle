@@ -18,7 +18,8 @@ android {
         }
     }
     buildTypes.each{
-        it.buildConfigField 'String', 'THEMOVIEDB_API_KEY', "\"575fe3d1ce7d4aa663d8008b03a3092a\""
+        it.buildConfigField 'String', 'THEMOVIEDB_API_KEY', 
+        it.buildConfigField 'String', 'VOTE_COUNT', "\"1000\""
     }
     repositories {
         mavenCentral()

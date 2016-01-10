@@ -45,17 +45,19 @@ public class FetchMovieTask extends AsyncTask<String, Void, ArrayList<MovieObjec
         String sortFormat = null;
         sortFormat = params[0];
 
-
         try {
             //building bloacks of  URL to to be built
             final String MOVIE_BASE_URL = "http://api.themoviedb.org/3/discover/movie?";
+            //set vote count to be at least 1000 in order to be in list
+            final String VOTE_COUNT = "vote_count.gte";
             final String SORT_PARAM = "sort_by";
             final String API_PARAM = "api_key";
 
             //build URI
             Uri builtUri = Uri.parse(MOVIE_BASE_URL).buildUpon()
-                    .appendQueryParameter(SORT_PARAM, sortFormat)
                     .appendQueryParameter(API_PARAM, BuildConfig.THEMOVIEDB_API_KEY)
+                    .appendQueryParameter(VOTE_COUNT, BuildConfig.VOTE_COUNT)
+                    .appendQueryParameter(SORT_PARAM, sortFormat)
                     .build();
 
             URL url = new URL(builtUri.toString());
@@ -118,7 +120,7 @@ public class FetchMovieTask extends AsyncTask<String, Void, ArrayList<MovieObjec
 
 
         String posterBaseUrl = "http://image.tmdb.org/t/p/w185/";
-        String backdropBaseUrl = "http://image.tmdb.org/t/p/w342/";
+        String backdropBaseUrl = "http://image.tmdb.org/t/p/w780/";
 
         JSONObject moviewJson = new JSONObject(MovieJsonStr);
         JSONArray movieArray = moviewJson.getJSONArray(OWM_RESULTS);
@@ -149,7 +151,7 @@ public class FetchMovieTask extends AsyncTask<String, Void, ArrayList<MovieObjec
             // Make a movie object and add to movie list
             MovieObject movie = new MovieObject(id, title, poster, back_drop,overview, release_date, rating);
             resultMovies.add(movie);
-            Log.i(LOG_TAG, movie.toString());
+
         }
         return resultMovies;
     }
