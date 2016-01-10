@@ -1,10 +1,14 @@
 package jiewei.popularmoviesi;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Wei on 1/9/2016.
  */
-public class MovieObject {
+public class MovieObject implements Parcelable {
 
+    public static final String PARCEL_TAG = "movie_tag";
     public String id;
     public String title;
     public String poster;
@@ -29,8 +33,41 @@ public class MovieObject {
         this.rating = rating;
     }
     //generated getters and setters
+    private MovieObject (Parcel in){
+        id = in.readString();
+        title = in.readString();
+        poster = in.readString();
+        back_drop = in.readString();
+        overview = in.readString();
+        release_date =in.readString();
+        rating = in.readString();
 
+    }
+    @Override
+    public int describeContents(){
+        return  0;
+    }
+    @Override
+    public void writeToParcel (Parcel parcel, int i){
+        parcel.writeString(id);
+        parcel.writeString(title);
+        parcel.writeString(poster);
+        parcel.writeString(back_drop);
+        parcel.writeString(overview);
+        parcel.writeString(release_date);
+        parcel.writeString(rating);
 
+    }
+    public static final Parcelable.Creator<MovieObject> CREATOR = new Parcelable.Creator<MovieObject>(){
+        @Override
+        public  MovieObject createFromParcel(Parcel parcel) {
+            return new MovieObject(parcel);
+        }
+        @Override
+        public MovieObject[] newArray(int i) {
+            return new MovieObject[i];
+        }
+    };
     public String getId() {
         return id;
     }
