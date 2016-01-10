@@ -5,7 +5,6 @@ package jiewei.popularmoviesi;
  */
 public class MovieObject {
 
-    public String thumb;
     public String id;
     public String title;
     public String poster;
@@ -19,9 +18,8 @@ public class MovieObject {
 
     }
 
-    public MovieObject(String thumb, String id, String title, String poster, String back_drop, String overview, String release_date, String rating) {
+    public MovieObject(String id, String title, String poster, String back_drop, String overview, String release_date, String rating) {
 
-        this.thumb = thumb;
         this.id = id;
         this.title = title;
         this.poster = poster;
@@ -31,13 +29,7 @@ public class MovieObject {
         this.rating = rating;
     }
     //generated getters and setters
-    public String getThumb() {
-        return thumb;
-    }
 
-    public void setThumb(String thumb) {
-        this.thumb = thumb;
-    }
 
     public String getId() {
         return id;

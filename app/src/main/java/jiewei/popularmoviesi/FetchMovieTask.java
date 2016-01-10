@@ -111,14 +111,12 @@ public class FetchMovieTask extends AsyncTask<String, Void, ArrayList<MovieObjec
         final String OWM_ID = "id";
         final String OWM_OVERVIEW = "overview";
         final String OWM_RELEASE_DATE = "release_date";
-        final String OWM_THUMB_PATH = "thumb_path";
         final String OWM_POSTER_PATH = "poster_path";
         final String OWM_BACKDROP_PATH = "backdrop_path";
         final String OWM_TITLE = "original_title";
         final String OWM_RATING = "vote_average";
 
 
-        String thumbBaseUrl = "http://image.tmdb.org/t/p/w185/";
         String posterBaseUrl = "http://image.tmdb.org/t/p/w185/";
         String backdropBaseUrl = "http://image.tmdb.org/t/p/w342/";
 
@@ -132,7 +130,6 @@ public class FetchMovieTask extends AsyncTask<String, Void, ArrayList<MovieObjec
             String id = null;
             String overview = null;
             String release_date = null;
-            String thumb = null;
             String poster = null;
             String back_drop = null;
             String title = null;
@@ -144,14 +141,13 @@ public class FetchMovieTask extends AsyncTask<String, Void, ArrayList<MovieObjec
             id = currentMovie.getString(OWM_ID);
             overview = currentMovie.getString(OWM_OVERVIEW);
             release_date = currentMovie.getString(OWM_RELEASE_DATE);
-            thumb = thumbBaseUrl + currentMovie.getString(OWM_THUMB_PATH);
             poster = posterBaseUrl + currentMovie.getString(OWM_POSTER_PATH);
             back_drop = backdropBaseUrl + currentMovie.getString(OWM_BACKDROP_PATH);
             title = currentMovie.getString(OWM_TITLE);
             rating = currentMovie.getString(OWM_RATING);
 
             // Make a movie object and add to movie list
-            MovieObject movie = new MovieObject(thumb, id, title, poster, back_drop,overview, release_date, rating);
+            MovieObject movie = new MovieObject(id, title, poster, back_drop,overview, release_date, rating);
             resultMovies.add(movie);
             Log.i(LOG_TAG, movie.toString());
         }

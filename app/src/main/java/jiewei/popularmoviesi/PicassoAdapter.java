@@ -28,7 +28,7 @@ public class PicassoAdapter extends ArrayAdapter<MovieObject> {
     public View getView (int position, View convertView, ViewGroup parent){
         //get Movie object from the ArrayAdapter at the appropriate position
         MovieObject current = getItem(position);
-        String thumbUrl = current.poster;
+        String posterUrl = current.poster;
 
         ImageView imageView;
         if (convertView == null) {
@@ -38,7 +38,7 @@ public class PicassoAdapter extends ArrayAdapter<MovieObject> {
         imageView.setAdjustViewBounds(true);
 
         Picasso.with(getContext())
-                .load(thumbUrl)
+                .load(posterUrl)
                 .fit()
                 .into(imageView);
 
