@@ -40,6 +40,15 @@
                 android:value="jiewei.popularmoviesi.MainActivity" />
 
         </activity>
+        <activity
+            android:name=".FavoriteActivity"
+            android:label="@string/title_activity_favorite"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="jiewei.popularmoviesi.MainActivity" />
+        </activity>
         <provider
             android:authorities="jiewei.popularmoviesi"
             android:name=".data.MovieProvider"

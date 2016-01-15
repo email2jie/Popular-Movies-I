@@ -59,59 +59,5 @@ public class DetailActivity extends ActionBarActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class DetailFragment extends Fragment {
 
-        public DetailFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-
-            View detailView = inflater.inflate(R.layout.detail_fragment, container, false);
-            Intent intent = getActivity().getIntent();
-            //pass title
-            if (intent != null && intent.hasExtra("MOVIE_TITLE")){
-                String movie_title = intent.getStringExtra("MOVIE_TITLE");
-                ((TextView) detailView.findViewById(R.id.movie_title_text))
-                        .setText(movie_title);
-
-                // set activity title
-                getActivity().setTitle(movie_title);
-
-                //pass poster image
-                String movie_poster = intent.getStringExtra("MOVIE_POSTER");
-
-                ImageView poster = (ImageView) detailView.findViewById(R.id.poster_image_view);
-                Picasso
-                        .with(getActivity())
-                        .load(movie_poster)
-                        .fit()
-                        .into(poster);
-                //pass Backdrop image
-                String movie_backdrop = intent.getStringExtra("MOVIE_BACKDROP");
-
-                ImageView backdrop = (ImageView)detailView.findViewById(R.id.backdrop_image_view);
-                Picasso
-                        .with(getContext())
-                        .load(movie_backdrop)
-                        .fit()
-                        .into(backdrop);
-
-                //pass release date
-                String movie_release = intent.getStringExtra("MOVIE_RELEASE");
-                ((TextView) detailView.findViewById(R.id.movie_release_date_text))
-                        .setText(movie_release);
-                //pass rating
-                String movie_rating = intent.getStringExtra("MOVIE_RATING");
-                ((TextView) detailView.findViewById(R.id.movie_rating_text))
-                        .setText( movie_rating);
-                //pass overview
-                String movie_overview = intent.getStringExtra("MOVIE_OVERVIEW");
-                ((TextView) detailView.findViewById(R.id.movie_overview_text))
-                        .setText( movie_overview);
-            }
-            return detailView;
-        }
-    }
 }

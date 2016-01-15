@@ -122,8 +122,8 @@ public class FetchMovieTask extends AsyncTask<String, Void, ArrayList<MovieObjec
         String posterBaseUrl = "http://image.tmdb.org/t/p/w185/";
         String backdropBaseUrl = "http://image.tmdb.org/t/p/w780/";
 
-        JSONObject moviewJson = new JSONObject(MovieJsonStr);
-        JSONArray movieArray = moviewJson.getJSONArray(OWM_RESULTS);
+        JSONObject movieJson = new JSONObject(MovieJsonStr);
+        JSONArray movieArray = movieJson.getJSONArray(OWM_RESULTS);
 
         //Loop JSON Array and fetch JSON movie objects
         ArrayList<MovieObject> resultMovies = new ArrayList<MovieObject>();

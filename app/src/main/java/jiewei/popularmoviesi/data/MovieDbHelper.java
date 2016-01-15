@@ -28,7 +28,7 @@ import jiewei.popularmoviesi.data.MovieContract.FavoriteEntry;
 public class MovieDbHelper extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
 
     static final String DATABASE_NAME = "favoriteMovies.db";
 
@@ -43,14 +43,14 @@ public class MovieDbHelper extends SQLiteOpenHelper {
 
                 FavoriteEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
                 FavoriteEntry.COLUMN_MOVIE_TITLE + " TEXT NOT NULL, " +
-                FavoriteEntry.COLUMN_MOVIE_POSTER + " INTEGER NOT NULL," +
+                FavoriteEntry.COLUMN_MOVIE_POSTER + " TEXT NOT NULL," +
 
-                FavoriteEntry.COLUMN_MOVIE_BACK_DROP + " REAL NOT NULL, " +
-                FavoriteEntry.COLUMN_MOVIE_OVERVIEW + " REAL NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_BACK_DROP + " TEXT NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_OVERVIEW + " TEXT NOT NULL, " +
 
-                FavoriteEntry.COLUMN_MOVIE_RELEASE_DATE + " REAL NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_RELEASE_DATE + " TEXT NOT NULL, " +
                 FavoriteEntry.COLUMN_MOVIE_RATING + " REAL NOT NULL); ";
-        
+
         sqLiteDatabase.execSQL(SQL_CREATE_FAVORITE_TABLE);
     }
 

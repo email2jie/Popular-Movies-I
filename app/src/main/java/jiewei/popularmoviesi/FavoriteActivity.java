@@ -1,22 +1,19 @@
 package jiewei.popularmoviesi;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-public class MainActivity extends ActionBarActivity {
-
+/**
+ * Created by Wei on 1/14/2016.
+ */
+public class FavoriteActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new MovieFragment())
-                    .commit();
-        }
+        setContentView(R.layout.favorite_activity);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -38,8 +35,8 @@ public class MainActivity extends ActionBarActivity {
             startActivity(new Intent(this,SettingsActivity.class));
             return true;
         }else {
-        startActivity(new Intent(this,FavoriteActivity.class));
-    }
+            startActivity(new Intent(this,FavoriteActivity.class));
+        }
 
         return super.onOptionsItemSelected(item);
     }
