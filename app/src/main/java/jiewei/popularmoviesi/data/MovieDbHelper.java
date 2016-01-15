@@ -20,7 +20,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 
-import jiewei.popularmoviesi.data.MovieContract.MovieEntry;
+import jiewei.popularmoviesi.data.MovieContract.FavoriteEntry;
 
 /**
  * Manages a local database for movie data.
@@ -30,7 +30,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
     private static final int DATABASE_VERSION = 1;
 
-    static final String DATABASE_NAME = "movie.db";
+    static final String DATABASE_NAME = "favoriteMovies.db";
 
     public MovieDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -38,24 +38,20 @@ public class MovieDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        final String SQL_CREATE_MOVIE_TABLE = "CREATE TABLE " + MovieEntry.TABLE_NAME + " (" +
-                MovieEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+        final String SQL_CREATE_FAVORITE_TABLE = "CREATE TABLE " + FavoriteEntry.TABLE_NAME + " (" +
+                FavoriteEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 
-                MovieEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
-                MovieEntry.COLUMN_MOVIE_TITLE + " TEXT NOT NULL, " +
-                MovieEntry.COLUMN_MOVIE_POSTER + " INTEGER NOT NULL," +
+                FavoriteEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_TITLE + " TEXT NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_POSTER + " INTEGER NOT NULL," +
 
-                MovieEntry.COLUMN_MOVIE_BACK_DROP + " REAL NOT NULL, " +
-                MovieEntry.COLUMN_MOVIE_OVERVIEW + " REAL NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_BACK_DROP + " REAL NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_OVERVIEW + " REAL NOT NULL, " +
 
-                MovieEntry.COLUMN_MOVIE_RELEASE_DATE + " REAL NOT NULL, " +
-                MovieEntry.COLUMN_MOVIE_RATING + " REAL NOT NULL, " +
-                MovieEntry.COLUMN_MOVIE_FAVORITE + " REAL NOT NULL, " +
-
-                // To assure the application have just one id per movie
-                " UNIQUE (" + MovieEntry.COLUMN_MOVIE_ID + ") ON CONFLICT REPLACE);";
+                FavoriteEntry.COLUMN_MOVIE_RELEASE_DATE + " REAL NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_RATING + " REAL NOT NULL); ";
         
-        sqLiteDatabase.execSQL(SQL_CREATE_MOVIE_TABLE);
+        sqLiteDatabase.execSQL(SQL_CREATE_FAVORITE_TABLE);
     }
 
     @Override
@@ -66,7 +62,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         // It does NOT depend on the version number for your application.
         // If you want to update the schema without wiping data, commenting out the next 2 lines
         // should be your top priority before modifying this method.
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + MovieEntry.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + FavoriteEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 }
