@@ -74,10 +74,18 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Database"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:id="@+id/database_button"
+            android:layout_below="@+id/poster_image_view"
+            android:layout_toRightOf="@+id/poster_image_view"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Favorite"
             android:layout_marginLeft="@dimen/margin_large"
             android:id="@+id/favorite_button"
-            android:layout_below="@+id/poster_image_view"
+            android:layout_below="@+id/database_button"
             android:layout_toRightOf="@+id/poster_image_view"/>
 
         <TextView

@@ -37,7 +37,7 @@ public class FavoriteAdapter extends CursorAdapter {
     }
     @Override
     public View newView (Context context,Cursor cursor,ViewGroup parent){
-        int layoutId = R.layout.favorite_grid;
+        int layoutId = R.layout.favorite_image_item;
 
         Log.d (LOG_TAG,  "in new view");
 

@@ -27,10 +27,10 @@ public class MovieProvider extends ContentProvider {
 
     private Cursor getMovieByMovieId(Uri uri, String[] projection, String sortOrder) {
         String favouriteMovieId = MovieContract.FavoriteEntry.getFavoriteIdFromUri(uri);
-        Log.i(LOG_TAG, "id in getMovieByMoiveId method: "+favouriteMovieId);
+        Log.i(LOG_TAG, "id in getMovieByMovieId method: "+favouriteMovieId);
         String[] selectionArgs = new String[]{favouriteMovieId};
         String selection = sMovieWithIDSelection;
-        Log.i (LOG_TAG, "selection in getMovieByMoiveID method: "+ selection);
+        Log.i (LOG_TAG, "selection in getMovieByMovieID method: "+ selection);
         return mOpenHelper.getReadableDatabase().query(MovieContract.FavoriteEntry.TABLE_NAME,
                 projection,
                 selection,
@@ -84,7 +84,7 @@ public class MovieProvider extends ContentProvider {
                 retCursor =mOpenHelper.getReadableDatabase().query(
                         MovieContract.FavoriteEntry.TABLE_NAME,
                         projection,
-                        MovieContract.FavoriteEntry.COLUMN_MOVIE_ID +"=?",
+                        MovieContract.FavoriteEntry._ID +"=?",
                         new String[]{String.valueOf(ContentUris.parseId(uri))},
                         null,
                         null,

@@ -30,6 +30,8 @@ public class DetailActivity extends ActionBarActivity {
                     .add(R.id.container, new DetailFragment())
                     .commit();
         }
+
+
     }
 
 
@@ -51,6 +53,8 @@ public class DetailActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             startActivity(new Intent(this,SettingsActivity.class));
             return true;
+        }else {
+        startActivity(new Intent(this,FavoriteActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

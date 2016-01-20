@@ -1,5 +1,6 @@
 package jiewei.popularmoviesi;
 import android.content.ContentUris;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,33 +49,37 @@ public class FavoriteFragment extends Fragment implements LoaderManager.LoaderCa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // inflate favorite_grid layout
-        final View rootView = inflater.inflate(R.layout.favorite_grid, container, false);
+        View favoriteView = inflater.inflate(R.layout.favorite_grid, container, false);
 
 
         // initialize our FavoriteAdapter
         mFavoriteAdapter = new FavoriteAdapter(getActivity(), null, 0, CURSOR_LOADER_ID);
         // initialize mGridView to the GridView in favorite_grid.xml
-        mGridView = (GridView) rootView.findViewById(R.id.favorite_grid_view);
+        mGridView = (GridView) favoriteView.findViewById(R.id.favorite_grid_view);
         // set mGridView adapter to our CursorAdapter
         mGridView.setAdapter(mFavoriteAdapter);
+
 
         //make each item clickable
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent,View view,int position, long id){
+
                 //increment the position to match database ids indexed starting at 1
                 int uriId = position +1;
-                //append Id to uri
-                Uri uri =ContentUris.withAppendedId(MovieContract.FavoriteEntry.CONTENT_URI,uriId);
+                String movId = MovieContract.FavoriteEntry.COLUMN_MOVIE_ID;
+                Log.v(LOG_TAG, "movie id = " + movId);
+                        //append Id to uri
+                        Uri uri = ContentUris.withAppendedId(MovieContract.FavoriteEntry.CONTENT_URI, uriId);
                 //create fragment
                 FavoriteView detailFragment = FavoriteView.newInstance(uriId, uri);
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container_favorite,detailFragment)
+                        .replace(R.id.container, detailFragment)
                         .addToBackStack(null)
                         .commit();
             }
         });
-        return rootView;
+        return favoriteView;
     }
 
     // Attach loader to favorite database query

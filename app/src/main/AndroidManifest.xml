@@ -49,10 +49,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="jiewei.popularmoviesi.MainActivity" />
         </activity>
+        <activity android:name="jiewei.popularmoviesi.AndroidDatabaseManager"
+            android:theme="@style/Theme.AppCompat.Light"/>
         <provider
             android:authorities="jiewei.popularmoviesi"
             android:name=".data.MovieProvider"
             android:exported="false"
+            android:enabled="true"
             android:syncable="true"/>
 
     </application>

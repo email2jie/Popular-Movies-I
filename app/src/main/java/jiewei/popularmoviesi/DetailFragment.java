@@ -64,8 +64,19 @@ public class DetailFragment extends Fragment implements View.OnClickListener  {
                              Bundle savedInstanceState) {
 
         View detailView = inflater.inflate(R.layout.detail_fragment, container, false);
+
+        Button data =(Button)detailView.findViewById(R.id.database_button);
+
+        data.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent dbmanager = new Intent(getActivity(),AndroidDatabaseManager.class);
+                startActivity(dbmanager);
+            }
+        });
         Intent intent = getActivity().getIntent();
         detailView.findViewById(R.id.favorite_button).setOnClickListener(this);
+
 
         //pass ID
         if (intent != null && intent.hasExtra("MOVIE_ID")) {
