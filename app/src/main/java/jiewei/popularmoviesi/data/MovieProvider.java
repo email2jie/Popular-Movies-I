@@ -125,7 +125,7 @@ public class MovieProvider extends ContentProvider {
                 if (_id > 0)
                     returnUri = MovieContract.FavoriteEntry.buildFavoriteUri(_id);
                 else
-                    throw new android.database.SQLException("Failed to inset row into " + uri);
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;
             }
 
@@ -137,7 +137,7 @@ public class MovieProvider extends ContentProvider {
     }
     @Override
     public int delete(Uri uri, String selection, String[]selectionArgs){
-        final SQLiteDatabase db =mOpenHelper.getWritableDatabase();
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         final int match = sUriMatcher.match(uri);
         int rowsDeleted;
         // this makes delete all rows return the number of rows deleted
@@ -145,17 +145,12 @@ public class MovieProvider extends ContentProvider {
         switch (match){
             case FAVORITE:
                 rowsDeleted = db.delete(MovieContract.FavoriteEntry.TABLE_NAME,selection,selectionArgs);
-                //reset _ID
-                db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME ='" + MovieContract.FavoriteEntry.TABLE_NAME + "'");
                 break;
 
             case FAVORITE_WITH_ID:
                 rowsDeleted = db.delete(MovieContract.FavoriteEntry.TABLE_NAME,
                         MovieContract.FavoriteEntry._ID +"=?",
                         new String[] {String.valueOf(ContentUris.parseId(uri))});
-                //reset _ID
-                db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" +
-                        MovieContract.FavoriteEntry.TABLE_NAME + "'");
                 break;
 
             default:

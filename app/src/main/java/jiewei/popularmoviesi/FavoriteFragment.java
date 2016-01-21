@@ -67,10 +67,10 @@ public class FavoriteFragment extends Fragment implements LoaderManager.LoaderCa
 
                 //increment the position to match database ids indexed starting at 1
                 int uriId = position +1;
-                String movId = MovieContract.FavoriteEntry.COLUMN_MOVIE_ID;
-                Log.v(LOG_TAG, "movie id = " + movId);
+                int movId = 76341;
                         //append Id to uri
                         Uri uri = ContentUris.withAppendedId(MovieContract.FavoriteEntry.CONTENT_URI, uriId);
+                        Uri uri2 = MovieContract.FavoriteEntry.CONTENT_URI;
                 //create fragment
                 FavoriteView detailFragment = FavoriteView.newInstance(uriId, uri);
                 getActivity().getSupportFragmentManager().beginTransaction()

@@ -34,7 +34,7 @@ import jiewei.popularmoviesi.data.MovieContract.FavoriteEntry;
 public class MovieDbHelper extends SQLiteOpenHelper {
 
     // If you change the database schema, you must increment the database version.
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 21;
 
     static final String DATABASE_NAME = "favoriteMovies.db";
 
@@ -47,7 +47,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_FAVORITE_TABLE = "CREATE TABLE " + FavoriteEntry.TABLE_NAME + " (" +
                 FavoriteEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 
-                FavoriteEntry.COLUMN_MOVIE_ID + " INTEGER NOT NULL, " +
+                FavoriteEntry.COLUMN_MOVIE_ID + " INTEGER UNIQUE NOT NULL, " +
                 FavoriteEntry.COLUMN_MOVIE_TITLE + " TEXT NOT NULL, " +
                 FavoriteEntry.COLUMN_MOVIE_POSTER + " INTEGER NOT NULL," +
 
@@ -73,7 +73,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
     public ArrayList<Cursor> getData(String Query){
         //get writable database
         SQLiteDatabase sqlDB = this.getWritableDatabase();
-        String[] columns = new String[] { "mesage" };
+        String[] columns = new String[] { "message" };
         //an array list of cursor to save two cursors one has results from the query
         //other cursor stores error message if any errors are triggered
         ArrayList<Cursor> alc = new ArrayList<Cursor>(2);

@@ -113,7 +113,7 @@ public class FavoriteView extends Fragment implements LoaderManager.LoaderCallba
         String selection = null;
         String [] selectionArgs = null;
         if (args != null){
-            selection = MovieContract.FavoriteEntry.COLUMN_MOVIE_ID;
+            selection = MovieContract.FavoriteEntry._ID;
             selectionArgs = new String[]{String.valueOf(mPosition)};
         }
         return new CursorLoader(getActivity(),

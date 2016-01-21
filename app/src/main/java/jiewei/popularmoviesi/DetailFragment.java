@@ -54,6 +54,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener  {
     protected String movie_rating;
     protected String movie_overview;
     protected Button favoriteButton;
+    protected String position;
 
     ArrayList<Trailer> trailers = new ArrayList<>();
     public DetailFragment() {
@@ -181,6 +182,8 @@ public class DetailFragment extends Fragment implements View.OnClickListener  {
                     favoriteCursor.close();
                 }
             } catch (Exception e) {
+                deleteFavorite();
+                Toast.makeText(getActivity(), "Delete from favorites", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }
@@ -201,7 +204,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener  {
     }
 
     public void deleteFavorite() {
-        getActivity().getContentResolver().delete(MovieContract.FavoriteEntry.CONTENT_URI, movie_id, null);
+        getActivity().getContentResolver().delete(MovieContract.FavoriteEntry.CONTENT_URI, "id = ?", new String[] { movie_id });
     }
 
     // Add FetchTrailerTask
